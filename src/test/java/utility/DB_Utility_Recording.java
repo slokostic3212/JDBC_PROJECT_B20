@@ -15,7 +15,7 @@ public class DB_Utility_Recording {
      * */
     public static void createConnection(){
 
-        String connectionStr = "jdbc:oracle:thin:@54.152.177.142:1521:XE";
+        String connectionStr = "jdbc:oracle:thin:@52.201.187.226:1521:XE";
         String username = "hr" ;
         String password = "hr" ;
 
@@ -381,5 +381,7 @@ public class DB_Utility_Recording {
 
 
         destroy();
-}
+    }
+
+
 }

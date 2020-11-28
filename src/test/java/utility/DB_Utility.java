@@ -11,9 +11,9 @@ public class DB_Utility {
 
     public static void createConnection() {
 
-        String connectionStr = "jdbc:oracle:thin:@52.201.187.226:1521:XE";
-        String username = "hr";
-        String password = "hr";
+        String connectionStr = ConfigurationReader.getProperty("database.url");
+        String username = ConfigurationReader.getProperty("database.username");
+        String password = ConfigurationReader.getProperty("database.password");
 
         try {
             conn = DriverManager.getConnection(connectionStr, username, password);
@@ -159,10 +159,10 @@ public class DB_Utility {
     /**
      * Create a method to return the cell value at certain row certain column
      *
-     * @param rowNum
+     * @param rowNum row number
+     * @param colNum column number
      * @return Cell value as String
-     * @parem colNum
-     */
+    =     */
     public static String getColumnDataAtRow(int rowNum, int colNum) {
 
         String result = "";
@@ -183,8 +183,8 @@ public class DB_Utility {
      * Create a method to return the cell value at certain row certain column
      *
      * @param rowNum row number
-     * @return Cell value as String
-     * @parem colName column name
+     * @param colName column name
+     * @return Cell value as String at specified row numeber and column number
      */
     public static String getColumnDataAtRow(int rowNum, String colName) {
 
@@ -246,7 +246,7 @@ public class DB_Utility {
                 cellValuesList.add( cellValue ) ;
 
             }
-            rs.beforeFirst();
+            rs.beforeFirst(); //Move it back to before first location
 
         } catch (SQLException e) {
             System.out.println("ERROR WHILE GETTING ONE COLUMN DATA AS LIST " + e.getMessage() );
@@ -308,7 +308,8 @@ public class DB_Utility {
         return rowMap ;
 
     }
-        public static List<Map<String,String> > getAllDataAsListOfMap(){
+
+    public static List<Map<String,String> > getAllDataAsListOfMap(){
 
         List<Map<String,String> > rowMapList = new ArrayList<>();
 
@@ -318,7 +319,7 @@ public class DB_Utility {
 
         }
         return  rowMapList ;
+    }
 
-}
 
 }
